@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Sem Censura</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #0e58a1;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .book-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .book-card a {
+            text-decoration: none;
+            color: #145bb3;
+            font-weight: bold;
+        }
+
+        .book-card a:hover {
+            text-decoration: underline;
+        }
+
+        .book-card p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        footer {
+            background-color: #145bb3;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 30px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Biblioteca Sem Censura</h1>
+        <p>Explore livros clássicos e obras de domínio público.</p>
+    </header>
+
+    <div class="container">
+        <div class="book-grid">
+            <!-- Livros de domínio público -->
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/1342" target="_blank">Orgulho e Preconceito - Jane Austen</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/11" target="_blank">Alice no País das Maravilhas - Lewis Carroll</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/84" target="_blank">Frankenstein - Mary Shelley</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/5200" target="_blank">Metamorfose - Franz Kafka</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/25525" target="_blank">O Príncipe - Maquiavel</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/1661" target="_blank">As Aventuras de Sherlock Holmes - Arthur Conan Doyle</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/174" target="_blank">O Retrato de Dorian Gray - Oscar Wilde</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/1184" target="_blank">A Divina Comédia - Dante Alighieri</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/2600" target="_blank">Guerra e Paz - Liev Tolstói</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/28054" target="_blank">Os Miseráveis - Victor Hugo</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/1497" target="_blank">A República - Platão</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/2701" target="_blank">Moby Dick - Herman Melville</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/25344" target="_blank">O Grande Gatsby - F. Scott Fitzgerald</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/145" target="_blank">Meditações - Marco Aurélio</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/98" target="_blank">A Ilha do Tesouro - Robert Louis Stevenson</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/408" target="_blank">A Metamorfose - Franz Kafka</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/1232" target="_blank">O Manifesto Comunista - Karl Marx e Friedrich Engels</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/35" target="_blank">A Volta ao Mundo em 80 Dias - Júlio Verne</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/36" target="_blank">O Médico e o Monstro - Robert Louis Stevenson</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/43" target="_blank">O Corvo - Edgar Allan Poe</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/46" target="_blank">A Máquina do Tempo - H.G. Wells</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/61" target="_blank">O Conde de Monte Cristo - Alexandre Dumas</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/74" target="_blank">As Viagens de Gulliver - Jonathan Swift</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/1080" target="_blank">A Arte da Guerra - Sun Tzu</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/120" target="_blank">Os Três Mosqueteiros - Alexandre Dumas</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/1257" target="_blank">O Livro da Selva - Rudyard Kipling</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/1260" target="_blank">Jane Eyre - Charlotte Brontë</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/1399" target="_blank">Anna Karenina - Liev Tolstói</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/1600" target="_blank">Hamlet - William Shakespeare</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/1524" target="_blank">A Odisséia - Homero</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/1727" target="_blank">O Processo - Franz Kafka</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/1952" target="_blank">O Morro dos Ventos Uivantes - Emily Brontë</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/205" target="_blank">A Origem das Espécies - Charles Darwin</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/215" target="_blank">O Capital - Karl Marx</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/219" target="_blank">O Anticristo - Friedrich Nietzsche</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+            <div class="book-card">
+                <a href="https://www.gutenberg.org/ebooks/244" target="_blank">O Livro dos Espíritos - Allan Kardec</a>
+                <p>Domínio público. Disponível no Project Gutenberg.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Projeto Genesis. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
