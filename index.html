@@ -3,251 +3,600 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca Sem Censura</title>
+    <title>Biblioteca Sem Censura | Projeto Gênesis</title>
+    <!-- Importando fontes do Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Ícones do Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Reset básico */
-        * {
+        :root {
+            --primary: #1565c0;
+            --primary-dark: #0d47a1;
+            --primary-light: #5e92f3;
+            --dark: #263238;
+            --light: #f5f9ff;
+            --gray: #607d8b;
+            --card-bg: #ffffff;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+        }
+
+        /* Reset moderno */
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f9f9f9;
-            color: #333;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
             line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
         header {
-            background-color: #0e58a1;
-            color: #fff;
-            padding: 20px 0;
+            background: var(--gradient);
+            color: white;
+            padding: 80px 0 60px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+            opacity: 0.6;
         }
 
-        header p {
-            font-size: 1.1rem;
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            animation: fadeInDown 1s ease;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-subtitle {
+            font-size: 1.2rem;
+            font-weight: 400;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeIn 1.5s ease;
         }
 
         .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
+            flex: 1;
+            padding: 60px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .book-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
         }
 
         .book-card {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s, box-shadow 0.2s;
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(21, 101, 192, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: 1px solid rgba(21, 101, 192, 0.1);
+        }
+
+        .book-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
         }
 
         .book-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(21, 101, 192, 0.2);
+            color: white;
+            border-color: transparent;
         }
 
-        .book-card a {
-            text-decoration: none;
-            color: #145bb3;
-            font-weight: bold;
+        .book-card:hover::before {
+            opacity: 1;
         }
 
-        .book-card a:hover {
-            text-decoration: underline;
+        .book-card:hover .book-title,
+        .book-card:hover .book-description,
+        .book-card:hover .book-icon {
+            color: white;
         }
 
-        .book-card p {
-            font-size: 0.9rem;
-            color: #666;
-            margin-top: 10px;
+        .book-title {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .book-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+            transition: color 0.3s ease;
+        }
+
+        .book-description {
+            font-size: 0.95rem;
+            color: var(--gray);
+            margin-bottom: 0;
+            text-align: left;
+            transition: color 0.3s ease;
+        }
+
+        .search-container {
+            max-width: 800px;
+            margin: 0 auto 40px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid rgba(21, 101, 192, 0.2);
+            border-radius: 50px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 4px 20px rgba(21, 101, 192, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+            font-size: 1.2rem;
         }
 
         footer {
-            background-color: #145bb3;
-            color: #fff;
+            background-color: var(--dark);
+            color: white;
             text-align: center;
-            padding: 15px 0;
-            margin-top: 30px;
+            padding: 30px 0;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-light);
+            transform: translateY(-3px);
         }
 
         footer p {
+            color: rgba(255, 255, 255, 0.7);
             margin: 0;
+            font-size: 0.9rem;
+        }
+
+        /* Animações */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Efeito de onda no header */
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%23f5f9ff" opacity=".25"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" fill="%23f5f9ff" opacity=".5"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%23f5f9ff"/></svg>');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .header-subtitle {
+                font-size: 1rem;
+            }
+
+            .container {
+                padding: 40px 20px;
+            }
+
+            .book-grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .book-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Biblioteca Sem Censura</h1>
-        <p>Explore livros clássicos e obras de domínio público.</p>
+        <div class="header-content">
+            <h1>Biblioteca Sem Censura</h1>
+            <p class="header-subtitle">Explore livros clássicos e obras de domínio público</p>
+        </div>
+        <div class="wave"></div>
     </header>
-
+    
     <div class="container">
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Pesquisar livros...">
+            <i class="fas fa-search search-icon"></i>
+        </div>
+        
         <div class="book-grid">
             <!-- Livros de domínio público -->
             <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/1342" target="_blank">Orgulho e Preconceito - Jane Austen</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
+                <a href="https://www.gutenberg.org/ebooks/1342" target="_blank" class="book-title">
+                    <i class="fas fa-book-open book-icon"></i>
+                    Orgulho e Preconceito - Jane Austen
+                </a>
+                <p class="book-description">Domínio público. Disponível no Project Gutenberg.</p>
             </div>
+            
             <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/11" target="_blank">Alice no País das Maravilhas - Lewis Carroll</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
+                <a href="https://www.gutenberg.org/ebooks/11" target="_blank" class="book-title">
+                    <i class="fas fa-book-open book-icon"></i>
+                    Alice no País das Maravilhas - Lewis Carroll
+                </a>
+                <p class="book-description">Domínio público. Disponível no Project Gutenberg.</p>
             </div>
+            
             <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/84" target="_blank">Frankenstein - Mary Shelley</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
+                <a href="https://www.gutenberg.org/ebooks/84" target="_blank" class="book-title">
+                    <i class="fas fa-book-open book-icon"></i>
+                    Frankenstein - Mary Shelley
+                </a>
+                <p class="book-description">Domínio público. Disponível no Project Gutenberg.</p>
             </div>
+            
             <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/5200" target="_blank">Metamorfose - Franz Kafka</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
+                <a href="https://www.gutenberg.org/ebooks/5200" target="_blank" class="book-title">
+                    <i class="fas fa-book-open book-icon"></i>
+                    Metamorfose - Franz Kafka
+                </a>
+                <p class="book-description">Domínio público. Disponível no Project Gutenberg.</p>
             </div>
+            
             <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/25525" target="_blank">O Príncipe - Maquiavel</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
+                <a href="https://www.gutenberg.org/ebooks/25525" target="_blank" class="book-title">
+                    <i class="fas fa-book-open book-icon"></i>
+                    O Príncipe - Maquiavel
+                </a>
+                <p class="book-description">Domínio público. Disponível no Project Gutenberg.</p>
             </div>
+            
             <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/1661" target="_blank">As Aventuras de Sherlock Holmes - Arthur Conan Doyle</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
+                <a href="https://www.gutenberg.org/ebooks/1661" target="_blank" class="book-title">
+                    <i class="fas fa-book-open book-icon"></i>
+                    As Aventuras de Sherlock Holmes - Arthur Conan Doyle
+                </a>
+                <p class="book-description">Domínio público. Disponível no Project Gutenberg.</p>
             </div>
+            
             <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/174" target="_blank">O Retrato de Dorian Gray - Oscar Wilde</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
+                <a href="https://www.gutenberg.org/ebooks/174" target="_blank" class="book-title">
+                    <i class="fas fa-book-open book-icon"></i>
+                    O Retrato de Dorian Gray - Oscar Wilde
+                </a>
+                <p class="book-description">Domínio público. Disponível no Project Gutenberg.</p>
             </div>
+            
             <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/1184" target="_blank">A Divina Comédia - Dante Alighieri</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
+                <a href="https://www.gutenberg.org/ebooks/1184" target="_blank" class="book-title">
+                    <i class="fas fa-book-open book-icon"></i>
+                    A Divina Comédia - Dante Alighieri
+                </a>
+                <p class="book-description">Domínio público. Disponível no Project Gutenberg.</p>
             </div>
+            
             <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/2600" target="_blank">Guerra e Paz - Liev Tolstói</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
+                <a href="https://www.gutenberg.org/ebooks/2600" target="_blank" class="book-title">
+                    <i class="fas fa-book-open book-icon"></i>
+                    Guerra e Paz - Liev Tolstói
+                </a>
+                <p class="book-description">Domínio público. Disponível no Project Gutenberg.</p>
             </div>
+            
             <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/28054" target="_blank">Os Miseráveis - Victor Hugo</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
+                <a href="https://www.gutenberg.org/ebooks/28054" target="_blank" class="book-title">
+                    <i class="fas fa-book-open book-icon"></i>
+                    Os Miseráveis - Victor Hugo
+                </a>
+                <p class="book-description">Domínio público. Disponível no Project Gutenberg.</p>
             </div>
+            
             <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/1497" target="_blank">A República - Platão</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
+                <a href="https://www.gutenberg.org/ebooks/1497" target="_blank" class="book-title">
+                    <i class="fas fa-book-open book-icon"></i>
+                    A República - Platão
+                </a>
+                <p class="book-description">Domínio público. Disponível no Project Gutenberg.</p>
             </div>
+            
             <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/2701" target="_blank">Moby Dick - Herman Melville</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
+                <a href="https://www.gutenberg.org/ebooks/2701" target="_blank" class="book-title">
+                    <i class="fas fa-book-open book-icon"></i>
+                    Moby Dick - Herman Melville
+                </a>
+                <p class="book-description">Domínio público. Disponível no Project Gutenberg.</p>
             </div>
+            
             <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/25344" target="_blank">O Grande Gatsby - F. Scott Fitzgerald</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
+                <a href="https://www.gutenberg.org/ebooks/25344" target="_blank" class="book-title">
+                    <i class="fas fa-book-open book-icon"></i>
+                    O Grande Gatsby - F. Scott Fitzgerald
+                </a>
+                <p class="book-description">Domínio público. Disponível no Project Gutenberg.</p>
             </div>
+            
             <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/145" target="_blank">Meditações - Marco Aurélio</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
+                <a href="https://www.gutenberg.org/ebooks/145" target="_blank" class="book-title">
+                    <i class="fas fa-book-open book-icon"></i>
+                    Meditações - Marco Aurélio
+                </a>
+                <p class="book-description">Domínio público. Disponível no Project Gutenberg.</p>
             </div>
+            
             <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/98" target="_blank">A Ilha do Tesouro - Robert Louis Stevenson</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
+                <a href="https://www.gutenberg.org/ebooks/98" target="_blank" class="book-title">
+                    <i class="fas fa-book-open book-icon"></i>
+                    A Ilha do Tesouro - Robert Louis Stevenson
+                </a>
+                <p class="book-description">Domínio público. Disponível no Project Gutenberg.</p>
             </div>
+            
             <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/408" target="_blank">A Metamorfose - Franz Kafka</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
+                <a href="https://www.gutenberg.org/ebooks/408" target="_blank" class="book-title">
+                    <i class="fas fa-book-open book-icon"></i>
+                    A Metamorfose - Franz Kafka
+                </a>
+                <p class="book-description">Domínio público. Disponível no Project Gutenberg.</p>
             </div>
+            
             <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/1232" target="_blank">O Manifesto Comunista - Karl Marx e Friedrich Engels</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
+                <a href="https://www.gutenberg.org/ebooks/1232" target="_blank" class="book-title">
+                    <i class="fas fa-book-open book-icon"></i>
+                    O Manifesto Comunista - Karl Marx e Friedrich Engels
+                </a>
+                <p class="book-description">Domínio público. Disponível no Project Gutenberg.</p>
             </div>
+            
             <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/35" target="_blank">A Volta ao Mundo em 80 Dias - Júlio Verne</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
+                <a href="https://www.gutenberg.org/ebooks/35" target="_blank" class="book-title">
+                    <i class="fas fa-book-open book-icon"></i>
+                    A Volta ao Mundo em 80 Dias - Júlio Verne
+                </a>
+                <p class="book-description">Domínio público. Disponível no Project Gutenberg.</p>
             </div>
+            
             <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/36" target="_blank">O Médico e o Monstro - Robert Louis Stevenson</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
+                <a href="https://www.gutenberg.org/ebooks/36" target="_blank" class="book-title">
+                    <i class="fas fa-book-open book-icon"></i>
+                    O Médico e o Monstro - Robert Louis Stevenson
+                </a>
+                <p class="book-description">Domínio público. Disponível no Project Gutenberg.</p>
             </div>
+            
             <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/43" target="_blank">O Corvo - Edgar Allan Poe</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
+                <a href="https://www.gutenberg.org/ebooks/43" target="_blank" class="book-title">
+                    <i class="fas fa-book-open book-icon"></i>
+                    O Corvo - Edgar Allan Poe
+                </a>
+                <p class="book-description">Domínio público. Disponível no Project Gutenberg.</p>
             </div>
+            
             <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/46" target="_blank">A Máquina do Tempo - H.G. Wells</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
+                <a href="https://www.gutenberg.org/ebooks/46" target="_blank" class="book-title">
+                    <i class="fas fa-book-open book-icon"></i>
+                    A Máquina do Tempo - H.G. Wells
+                </a>
+                <p class="book-description">Domínio público. Disponível no Project Gutenberg.</p>
             </div>
+            
             <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/61" target="_blank">O Conde de Monte Cristo - Alexandre Dumas</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
+                <a href="https://www.gutenberg.org/ebooks/61" target="_blank" class="book-title">
+                    <i class="fas fa-book-open book-icon"></i>
+                    O Conde de Monte Cristo - Alexandre Dumas
+                </a>
+                <p class="book-description">Domínio público. Disponível no Project Gutenberg.</p>
             </div>
+            
             <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/74" target="_blank">As Viagens de Gulliver - Jonathan Swift</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
+                <a href="https://www.gutenberg.org/ebooks/74" target="_blank" class="book-title">
+                    <i class="fas fa-book-open book-icon"></i>
+                    As Viagens de Gulliver - Jonathan Swift
+                </a>
+                <p class="book-description">Domínio público. Disponível no Project Gutenberg.</p>
             </div>
+            
             <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/1080" target="_blank">A Arte da Guerra - Sun Tzu</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
+                <a href="https://www.gutenberg.org/ebooks/1080" target="_blank" class="book-title">
+                    <i class="fas fa-book-open book-icon"></i>
+                    A Arte da Guerra - Sun Tzu
+                </a>
+                <p class="book-description">Domínio público. Disponível no Project Gutenberg.</p>
             </div>
+            
             <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/120" target="_blank">Os Três Mosqueteiros - Alexandre Dumas</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
+                <a href="https://www.gutenberg.org/ebooks/120" target="_blank" class="book-title">
+                    <i class="fas fa-book-open book-icon"></i>
+                    Os Três Mosqueteiros - Alexandre Dumas
+                </a>
+                <p class="book-description">Domínio público. Disponível no Project Gutenberg.</p>
             </div>
+            
             <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/1257" target="_blank">O Livro da Selva - Rudyard Kipling</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
+                <a href="https://www.gutenberg.org/ebooks/1257" target="_blank" class="book-title">
+                    <i class="fas fa-book-open book-icon"></i>
+                    O Livro da Selva - Rudyard Kipling
+                </a>
+                <p class="book-description">Domínio público. Disponível no Project Gutenberg.</p>
             </div>
+            
             <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/1260" target="_blank">Jane Eyre - Charlotte Brontë</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
+                <a href="https://www.gutenberg.org/ebooks/1260" target="_blank" class="book-title">
+                    <i class="fas fa-book-open book-icon"></i>
+                    Jane Eyre - Charlotte Brontë
+                </a>
+                <p class="book-description">Domínio público. Disponível no Project Gutenberg.</p>
             </div>
+            
             <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/1399" target="_blank">Anna Karenina - Liev Tolstói</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
+                <a href="https://www.gutenberg.org/ebooks/1399" target="_blank" class="book-title">
+                    <i class="fas fa-book-open book-icon"></i>
+                    Anna Karenina - Liev Tolstói
+                </a>
+                <p class="book-description">Domínio público. Disponível no Project Gutenberg.</p>
             </div>
+            
             <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/1600" target="_blank">Hamlet - William Shakespeare</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
+                <a href="https://www.gutenberg.org/ebooks/1600" target="_blank" class="book-title">
+                    <i class="fas fa-book-open book-icon"></i>
+                    Hamlet - William Shakespeare
+                </a>
+                <p class="book-description">Domínio público. Disponível no Project Gutenberg.</p>
             </div>
+            
             <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/1524" target="_blank">A Odisséia - Homero</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
+                <a href="https://www.gutenberg.org/ebooks/1524" target="_blank" class="book-title">
+                    <i class="fas fa-book-open book-icon"></i>
+                    A Odisséia - Homero
+                </a>
+                <p class="book-description">Domínio público. Disponível no Project Gutenberg.</p>
             </div>
+            
             <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/1727" target="_blank">O Processo - Franz Kafka</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
+                <a href="https://www.gutenberg.org/ebooks/1727" target="_blank" class="book-title">
+                    <i class="fas fa-book-open book-icon"></i>
+                    O Processo - Franz Kafka
+                </a>
+                <p class="book-description">Domínio público. Disponível no Project Gutenberg.</p>
             </div>
+            
             <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/1952" target="_blank">O Morro dos Ventos Uivantes - Emily Brontë</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
-            </div>
-            <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/205" target="_blank">A Origem das Espécies - Charles Darwin</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
-            </div>
-            <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/215" target="_blank">O Capital - Karl Marx</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
-            </div>
-            <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/219" target="_blank">O Anticristo - Friedrich Nietzsche</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
-            </div>
-            <div class="book-card">
-                <a href="https://www.gutenberg.org/ebooks/244" target="_blank">O Livro dos Espíritos - Allan Kardec</a>
-                <p>Domínio público. Disponível no Project Gutenberg.</p>
+                <a href="https://www.gutenberg.org/ebooks/1952" target="_blank" class="book-title">
+                    <i class="fas fa-book-open book-icon"></i>
+                    O Morro dos Ventos Uivantes - Emily Brontë
+                </a>
+                <p class="book-description">Domínio público. Disponível no Project Gutenberg.</p>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2025 Projeto Genesis. Todos os direitos reservados.</p>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <p>&copy; 2025 Projeto Gênesis. Todos os direitos reservados.</p>
+        </div>
     </footer>
+
+    <script>
+        // Função de busca simples
+        document.querySelector('.search-input').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const books = document.querySelectorAll('.book-card');
+            
+            books.forEach(book => {
+                const title = book.querySelector('.book-title').textContent.toLowerCase();
+                if (title.includes(searchTerm)) {
+                    book.style.display = 'block';
+                } else {
+                    book.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
